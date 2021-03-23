@@ -48,10 +48,12 @@ import br.com.sankhya.ws.ServiceContext;
 
 public class ImportAbastecimento implements ScheduledAction {
 	
+	/*
 
 	private AuthenticationInfo oldAuthInfo;
 	private AuthenticationInfo authInfo;
 	private final ServiceContext sctx = new ServiceContext(null);
+	*/
 	
 
 	public void onTime(ScheduledActionContext arg0) {
@@ -83,10 +85,13 @@ public class ImportAbastecimento implements ScheduledAction {
 				URL url;
 				try {
 					url = new URL(uriBuf.toString());
+					
+					System.out.println("THIAGO BONATTI - INICIO 22/03/2021");
 
 					HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 					conn.setUseCaches(false);
 					conn.setDoOutput(false);
+					//conn.setConnectTimeout(4000);
 					conn.setRequestMethod("GET");
 					conn.setRequestProperty("charset", "utf-8");
 					conn.setRequestProperty("token", "7107b5a2-34ae-11eb-adc1-0242ac120002");
@@ -97,8 +102,10 @@ public class ImportAbastecimento implements ScheduledAction {
 					// System.out.println("statusHttp " + statusHttp);
 
 					StringBuilder json = new StringBuilder("{'data': " + retornoJson(conn.getInputStream()) + "}");
+					
+					System.out.println("THIAGO BONATTI - PARTE 2");
 
-					// System.out.println(json);
+					System.out.println(json);
 
 					JSONObject obj = null;
 
@@ -296,7 +303,7 @@ public class ImportAbastecimento implements ScheduledAction {
 		
 	
 	}
-	
+	/*
 	protected void registry(BigDecimal codUsu) throws Exception {	
 
 		oldAuthInfo = AuthenticationInfo.getCurrentOrNull();
@@ -328,5 +335,5 @@ public class ImportAbastecimento implements ScheduledAction {
 
 		// }
 	}	
-
+   */
 }
